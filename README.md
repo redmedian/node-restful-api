@@ -19,3 +19,8 @@ DELETE /api/resources/:id
     "year": 1983
 }
 ```
+
+## Links:
+```
+expressjs/basic-auth-connect - https://github.com/expressjs/basic-auth-connect
+```
