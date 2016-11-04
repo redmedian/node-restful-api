@@ -6,6 +6,10 @@ var express = require('express'),
     mongoose = restful.mongoose;
 var app = express();
 
+// set the port of our application
+// process.env.PORT lets the port be set by Heroku
+var port = process.env.PORT || 8080;
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
@@ -22,5 +26,5 @@ var Resource = app.resource = restful.model('resources', mongoose.Schema({
 
 Resource.register(app, '/api/resources');
 
-app.listen(3000);
-console.log('Server is running at port 3000');
+app.listen(port);
+console.log('Server is running at port' + port);
