@@ -1,4 +1,5 @@
 var express = require('express'),
+    basicAuth = require('basic-auth-connect'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     morgan = require('morgan'),
@@ -10,13 +11,14 @@ var app = express();
 // process.env.PORT lets the port be set by Heroku
 var port = process.env.PORT || 8080;
 
+app.use(basicAuth('admin', '12345'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 app.use(methodOverride());
 
-mongoose.connect("mongodb://admin:adminpass1010@ds143777.mlab.com:43777/heroku_hgd2t1g7");
+mongoose.connect("mongodb://localhost/resources");
 
 var Resource = app.resource = restful.model('resources', mongoose.Schema({
     title: String,
@@ -27,4 +29,4 @@ var Resource = app.resource = restful.model('resources', mongoose.Schema({
 Resource.register(app, '/api/resources');
 
 app.listen(port);
-console.log('Server is running at port' + port);
+console.log('Server is running at port ' + port);
