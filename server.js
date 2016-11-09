@@ -18,7 +18,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 app.use(methodOverride());
 
-mongoose.connect("mongodb://localhost/resources");
+// mongoose.connect("mongodb://localhost/resources");
+mongoose.connect("mongodb://admin:adminpass1010@ds143777.mlab.com:43777/heroku_hgd2t1g7");
 
 var Resource = app.resource = restful.model('resources', mongoose.Schema({
     title: String,
