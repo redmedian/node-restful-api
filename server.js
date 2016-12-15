@@ -1,5 +1,6 @@
 var express = require('express'),
     // basicAuth = require('basic-auth-connect'),
+    cors = require('cors');
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     morgan = require('morgan'),
@@ -12,6 +13,7 @@ var app = express();
 var port = process.env.PORT || 8080;
 
 // app.use(basicAuth('admin', '12345'));
+app.use('/api/resources', cors());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
